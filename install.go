@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-const pluginURL = "https://github.com/jiyeonseo/bitbar-for-everyone/zipball/main"
+const pluginURL = "https://github.com/jiyeonseo/bitbar-for-everyone/archive/main.zip"
 const bitbarURL = "https://github.com/matryer/bitbar/releases/download/v1.9.2/BitBar-v1.9.2.zip"
 
 const token = ""
@@ -125,10 +125,12 @@ func downloadBitbar() []string {
 
 func main() {
 	plugins := downloadPlugins()
-    
-    oldLocation := plugins[0] + "/plugins/"
-    newLocation := "/Users/user/Documents/bitbar/"
-	rerr := os.Rename(oldLocation, newLocation)
+	
+	home, _  := os.UserHomeDir()
+    pluginLocation := plugins[0] + "/plugins/"
+    configLocation := home+"/Documents/bitbar/"
+	os.RemoveAll(configLocation)
+	rerr := os.Rename(pluginLocation, configLocation)
 	if rerr != nil {
 		fmt.Printf("err: %s", rerr)
 	}

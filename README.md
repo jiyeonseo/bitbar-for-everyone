@@ -10,11 +10,14 @@ This is a skeleton repository that I used when I introduced a [bitbar](https://g
 - Put your own git repo address for `pluginURL` which contains plugins in `/plugins` directory.
   - In case you are using GitGub Enterprise, you need to use token and edit code like below. 
     ```go
+    const pluginURL = "https://github.com/jiyeonseo/bitbar-for-everyone/archive/master.zip"
+    const token = "{GitHub_token}"
     func downloadPlugins() []string {
 	    result := downloadZip(pluginURL, "main.zip", true) // make here true
         return result
     }
     ```
+    
 
 ## deploy the installation 
 
@@ -37,6 +40,10 @@ $ mkdir 0.0.1 && mv install-bitbar 0.0.1 & zip -r 0.0.1.zip 0.0.1
 (screenshot)
 
 ## notes 
+
+Make sure that a plugin folder must be set as `/Documents/bitbar/`. Plugin folder can be changed by preferences configuration tab. 
+
+![](https://user-images.githubusercontent.com/2231510/109415003-82033d00-79f9-11eb-9d81-36c363896663.png)
 
 Mac probably warns the user that the app can't be opened because it is from an unidentified developer. Inform the users that they can allow the app via `System Preferences` > `Security & Privacy` like below: 
 
