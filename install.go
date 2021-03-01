@@ -132,16 +132,21 @@ func main() {
 	os.RemoveAll(configLocation)
 	rerr := os.Rename(pluginLocation, configLocation)
 	if rerr != nil {
-		fmt.Printf("err: %s", rerr)
+		fmt.Printf("Rename: %s\n", rerr)
+	}
+
+	cerr := os.Chdir(home+"/Downloads")
+	if cerr != nil {
+		fmt.Printf("Chdir err: %s\n", cerr)
 	}
 
 	bitbar := downloadBitbar()
 
 	cmd := exec.Command("open", bitbar[0])
-	stdout, err := cmd.Output()
+	stdout, oerr := cmd.Output()
 
-	if err != nil {
-		fmt.Printf("err: %s", err)
+	if oerr != nil {
+		fmt.Printf("Open err: %s\n", oerr)
 	}
 	fmt.Printf(string(stdout))
 }
